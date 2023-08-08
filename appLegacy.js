@@ -1,9 +1,9 @@
-import express, {Express, Response, Request} from 'express';
+import express from 'express';
 import 'dotenv/config';
 const app = express();
 const port = process.env.PORT;
 
-app.get('/', (req:Request, res:Response) => {
+app.get('/', (req, res) => {
     res.json({
         status: 200,
         message: 'Hello team 2',
@@ -13,7 +13,7 @@ app.get('/', (req:Request, res:Response) => {
                 title: 'Title 1'
             }
         ] 
-    });  
+    }); 
 });  
 
 app.listen(port, () => {
