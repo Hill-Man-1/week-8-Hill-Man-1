@@ -3,7 +3,7 @@ import 'dotenv/config';
 const app = express();
 const port = process.env.PORT;
 
-app.get('/getget', (req, res) => {
+app.get('/', (req, res) => {
     res.json({
         status: 200,
         message: 'Hello team 2',
