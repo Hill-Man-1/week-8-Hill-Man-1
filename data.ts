@@ -19,7 +19,7 @@ interface ICashflow{
     description:string;
     amount:number;
     note:string;
-}
+} 
 
 let cashFlows: ICashflow[] = [
     {
