@@ -45,6 +45,9 @@ let cashFlows = [
         note: "Salary"
     },
 ];
+app.get('/', (req, res) => {
+    res.json("This is a Web About Cashflow");
+});
 app.get('/cashflow', (req, res) => {
     res.json(cashFlows);
 });

@@ -30,6 +30,10 @@ let cashFlows: ICashflow[] = [
     note: "Salary"},
 ];
 
+app.get('/', (req: express.Request, res: express.Response) => {
+    res.json("This is a Web About Cashflow");
+});  
+
 app.get('/cashflow', (req: express.Request, res: express.Response) => {
     res.json(cashFlows);
 });  
