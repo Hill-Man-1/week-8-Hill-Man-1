@@ -33,9 +33,6 @@ dotenv.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 3000;
 app.use(body_parser_1.default.json());
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-});
 let cashFlows = [
     {
         id: 1,
@@ -115,4 +112,7 @@ app.delete('/cashflow/:id', (req, res) => {
             res.status(404).json({ message: "Cash Flow Not Found" });
         }
     }
+});
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`);
 });
