@@ -87,18 +87,6 @@ app.put('/cashflow/:id', (req, res) => {
         res.status(404).json({ message: "Cash Flow Not Found" });
     }
 });
-app.patch('/cashflow/:id', (req, res) => {
-    const id = parseInt(req.params.id);
-    const cashFlowIndex = cashFlows.findIndex((p) => p.id === id);
-    if (cashFlowIndex !== -1) {
-        const updateCashFlow = Object.assign(Object.assign({}, cashFlows[cashFlowIndex]), req.body);
-        cashFlows[cashFlowIndex] = updateCashFlow;
-        res.json(updateCashFlow);
-    }
-    else {
-        res.status(404).json({ message: "Cash Flow Not Found" });
-    }
-});
 app.delete('/cashflow/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const cashFlowIndex = cashFlows.findIndex((p) => p.id === id);
