@@ -1,7 +1,7 @@
 import express, {Response,Request} from 'express';
 import bodyParser from 'body-parser';
 import ICashflow from '../interface/interface';
-import data from './data';
+import data from './data'
 
 
 const router = express.Router();
