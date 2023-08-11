@@ -1,41 +1,22 @@
 import express, {Response,Request} from 'express';
-import * as dotenv from 'dotenv';
 import bodyParser from 'body-parser';
-
-dotenv.config();
-
-const app = express();
-const port = process.env.PORT || 3000;
-
-app.use(bodyParser.json());
+import ICashflow from '../interface/interface';
+import data from './data';
 
 
-interface ICashflow{
-    id:number;
-    cashflow:string;
-    description:string;
-    amount:number;
-    note:string;
-} 
+const router = express.Router();
 
-let cashFlows: ICashflow[] = [
-    {
-        id: 1,
-        cashflow: "Cash In",
-        description: "Salary",
-        amount: 10000,
-        note: "Salary"},
-    ];
+let cashFlows: ICashflow[] = data
     
-    app.get('/', (req: express.Request, res: express.Response) => {
+    router.get('/', (req: express.Request, res: express.Response) => {
         res.json("This is a Web About Cashflow");
     });  
     
-    app.get('/cashflow', (req: express.Request, res: express.Response) => {
+    router.get('/cashflow', (req: express.Request, res: express.Response) => {
         res.json(cashFlows);
     });  
     
-    app.get('/cashflow/:id', (req: express.Request, res: express.Response) => {
+    router.get('/cashflow/:id', (req: express.Request, res: express.Response) => {
         const id = parseInt(req.params.id);
         const cashflow = cashFlows.find((p) => p.id === id);
         if(cashflow){
@@ -45,7 +26,7 @@ let cashFlows: ICashflow[] = [
         }
     });
     
-    app.post('/cashflow', (req: express.Request, res: express.Response) => {
+    router.post('/cashflow', (req: express.Request, res: express.Response) => {
         const newCashflow: ICashflow = {
             id: cashFlows.length + 1,
             cashflow: req.body.cashflow,
@@ -55,9 +36,10 @@ let cashFlows: ICashflow[] = [
         };
         cashFlows.push(newCashflow);
         res.status(200).json(newCashflow);
+        console.log(newCashflow)
     })
     
-    app.put('/cashflow/:id', (req: express.Request, res: express.Response) => {
+    router.put('/cashflow/:id', (req: express.Request, res: express.Response) => {
         const id = parseInt(req.params.id);
         const cashFlowIndex = cashFlows.findIndex((p) => p.id === id);
         if (cashFlowIndex !== -1){
@@ -75,19 +57,19 @@ let cashFlows: ICashflow[] = [
     }
 });
 
-app.delete('/cashflow/:id', (req: express.Request, res: express.Response) =>{
+router.delete('/cashflow/delete/:id', (req: express.Request, res: express.Response) =>{
     const id = parseInt(req.params.id);
     const cashFlowIndex = cashFlows.findIndex((p) => p.id === id);
     if (cashFlowIndex !== -1) {
         const deleteCashFlow = cashFlows.findIndex((p) => p.id === id);
         if (cashFlowIndex !==-1){
-            const deleteCashFlow = cashFlows.splice(cashFlowIndex,1)[0];
+            const deleteCashFlow = cashFlows.splice(cashFlowIndex)[0];
             res.json(deleteCashFlow);
         } else {
             res.status(404).json({message: "Cash Flow Not Found"})
         }
     }
 });
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-});
+
+
+export default router;
