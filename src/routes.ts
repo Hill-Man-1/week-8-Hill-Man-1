@@ -13,14 +13,18 @@ let cashFlows: ICashflow[] = data
     });  
     
     router.get('/cashflow', (req: express.Request, res: express.Response) => {
-        res.json(cashFlows);
+        res.json({
+            message : "Data Cashflow",
+            data: cashFlows});
     });  
     
     router.get('/cashflow/:id', (req: express.Request, res: express.Response) => {
         const id = parseInt(req.params.id);
         const cashflow = cashFlows.find((p) => p.id === id);
         if(cashflow){
-            res.json({cashflow});
+            res.json({
+                message: "This Data Cashflow Get By ID",
+                data : cashflow});
         }else{
             res.status(404).json({message:'Cashflow not found'});
         }
@@ -35,8 +39,9 @@ let cashFlows: ICashflow[] = data
             note: req.body.note,
         };
         cashFlows.push(newCashflow);
-        res.status(200).json(newCashflow);
-        console.log(newCashflow)
+        res.status(200).json({
+            message : "Added to Data Cashflow",
+            data: newCashflow});
     })
     
     router.put('/cashflow/:id', (req: express.Request, res: express.Response) => {
@@ -51,7 +56,7 @@ let cashFlows: ICashflow[] = data
                 note: req.body.note,
         };
         cashFlows[cashFlowIndex] = updateCashFlow;
-        res.json(updateCashFlow);
+        res.json({message: "Updated cashflow", data: updateCashFlow});
     }else{
         res.status(404).json({message: "Cash Flow Not Found"})
     }
@@ -64,7 +69,7 @@ router.delete('/cashflow/:id', (req: express.Request, res: express.Response) =>{
         const deleteCashFlow = cashFlows.findIndex((p) => p.id === id);
         if (cashFlowIndex !==-1){
             const deleteCashFlow = cashFlows.splice(cashFlowIndex,1)[0];
-            res.json(deleteCashFlow);
+            res.json({message: "Deleted", data: deleteCashFlow});
         } else {
             res.status(404).json({message: "Cash Flow Not Found"})
         }
