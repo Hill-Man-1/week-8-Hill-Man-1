@@ -57,7 +57,7 @@ let cashFlows: ICashflow[] = data
     }
 });
 
-router.delete('/cashflow/delete/:id', (req: express.Request, res: express.Response) =>{
+router.delete('/cashflow/:id', (req: express.Request, res: express.Response) =>{
     const id = parseInt(req.params.id);
     const cashFlowIndex = cashFlows.findIndex((p) => p.id === id);
     if (cashFlowIndex !== -1) {
