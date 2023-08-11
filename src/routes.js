@@ -7,9 +7,12 @@ const express_1 = __importDefault(require("express"));
 const data_1 = __importDefault(require("./data"));
 const router = express_1.default.Router();
 let cashFlows = data_1.default;
+
+
 router.get('/', (req, res) => {
     res.json("This is a Web About Cashflow");
 });
+
 router.get('/cashflow', (req, res) => {
     res.json({
         message: "Data Cashflow",
