@@ -53,13 +53,13 @@ router.put('/cashflow/:id', (req, res) => {
         res.status(404).json({ message: "Cash Flow Not Found" });
     }
 });
-router.delete('/cashflow/delete/:id', (req, res) => {
+router.delete('/cashflow/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const cashFlowIndex = cashFlows.findIndex((p) => p.id === id);
     if (cashFlowIndex !== -1) {
         const deleteCashFlow = cashFlows.findIndex((p) => p.id === id);
         if (cashFlowIndex !== -1) {
-            const deleteCashFlow = cashFlows.splice(cashFlowIndex)[0];
+            const deleteCashFlow = cashFlows.splice(cashFlowIndex, 1)[0];
             res.json(deleteCashFlow);
         }
         else {

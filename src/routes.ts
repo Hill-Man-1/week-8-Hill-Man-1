@@ -63,7 +63,7 @@ router.delete('/cashflow/:id', (req: express.Request, res: express.Response) =>{
     if (cashFlowIndex !== -1) {
         const deleteCashFlow = cashFlows.findIndex((p) => p.id === id);
         if (cashFlowIndex !==-1){
-            const deleteCashFlow = cashFlows.splice(cashFlowIndex)[0];
+            const deleteCashFlow = cashFlows.splice(cashFlowIndex,1)[0];
             res.json(deleteCashFlow);
         } else {
             res.status(404).json({message: "Cash Flow Not Found"})

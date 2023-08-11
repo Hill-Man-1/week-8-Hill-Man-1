@@ -2,12 +2,12 @@
   "name": "week-8-hill-man-1",
   "description": "[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/sRKW9Tsr)",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "src/app.js",
   "type": "commonjs",
   "scripts": {
-    "start": "node Dist/app.js",
+    "start": "node src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon Dist/app.js\""
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon src/app.js\""
   },
   "author": "",
   "license": "ISC",
